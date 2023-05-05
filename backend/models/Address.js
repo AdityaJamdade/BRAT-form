@@ -24,6 +24,14 @@ const AddressSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    permanent_address:{
+        type: String,
+        required: true
+    },
+    local_address:{
+        type: String,
+        required: true
+    },
 
 }, {timestamps: true})
 
