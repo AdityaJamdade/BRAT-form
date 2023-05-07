@@ -4,12 +4,17 @@
   "description": "This is a weportal for filling out an entrance \u001b[1;5D\u001b[1;5D\u001b[1;5ion: Web Application Development mini project for filling out an entrace exam form",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "server": "nodemon backend/index.js"
   },
-  "author": "aditya, arman\u001b[1;5D\u001b[1;5D\u001b[1;5D\u001b[1;5A\u001b[1;5D\u001b[1;5D\u001b[1;5D\u001b[1;5D\u001b[1;5D\u001b[1;5D\u001b[1;5D\u001b[1;5D\u001b[D\u001b[3~A\u001b[F\u001b[B\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C",
+  "author": "aditya, arman",
   "license": "ISC",
   "dependencies": {
+    "colors": "^1.4.0",
+    "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "mongoose": "^7.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
   }
 }
