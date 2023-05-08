@@ -14,7 +14,7 @@ const ProfileSchema = new mongoose.Schema({
         required: true
     },
     date_of_birth: {
-        type: Date,
+        type: String,
         required: true
     },
     gender: {
@@ -37,7 +37,8 @@ const ProfileSchema = new mongoose.Schema({
     },
     email_id: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
 },{
     timestamps: true

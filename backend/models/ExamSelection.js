@@ -7,7 +7,8 @@ const ExamSelectionSchema = new mongoose.Schema({
     },
     email_id: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
 },  
     { timestamps: true })
