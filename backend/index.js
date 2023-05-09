@@ -14,7 +14,6 @@ app.use((req, res, next) => {
 });
 
 app.use('/api/user/profile', require('./routes/profileRoutes'))
-app.use('/api/user/profileAddress', require('./routes/addressRoutes'))
 
 app.use('/', (req, res) => {
     res.json({ msg: 'This is base endpoint!' });
