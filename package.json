@@ -4,6 +4,7 @@
   "description": "This is a weportal for filling out an entrance \u001b[1;5D\u001b[1;5D\u001b[1;5ion: Web Application Development mini project for filling out an entrace exam form",
   "main": "index.js",
   "scripts": {
+    "client": "npm run start --prefix frontend",
     "server": "nodemon backend/index.js"
   },
   "author": "aditya, arman",
@@ -12,7 +13,8 @@
     "colors": "^1.4.0",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "mongoose": "^7.1.0"
+    "mongoose": "^7.1.0",
+    "multer": "^1.4.5-lts.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.22"

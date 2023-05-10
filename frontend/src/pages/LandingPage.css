@@ -1,0 +1,124 @@
+.landingpage-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #24292e, #1c2022);
+  color: #fff;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0);
+  }
+  70% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(370deg);
+  }
+}
+
+.body-logo {
+  height: 120px;
+  width: 120px;
+  border-radius: 50%;
+  animation: spin 3s linear 2s;
+  margin-top: 20px;
+  margin-right: 40px;
+}
+
+.landingpage-heading {
+  font-size: 4rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 2rem;
+  animation: slideInFromRight 1.5s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.landingpage-text {
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 4rem;
+  max-width: 80%;
+  animation: fadeInUp 1.3s ease-in-out;
+}
+
+.landingpage-button {
+  padding: 1rem 2rem;
+  background-color: #2ea44f;
+  color: #fff;
+  border-radius: 15px;
+  font-size: 1.5rem;
+  text-decoration: none;
+  transition: background-color 0.3s ease-in-out;
+  animation: slideInFromLeft 2s ease-in-out;
+}
+
+.landingpage-button:hover {
+  background-color: #238636;
+}
+
+@keyframes fadeInUp {
+  0% {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInDown {
+  0% {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .landingpage-heading {
+    font-size: 2.5rem;
+  }
+  .landingpage-text {
+    font-size: 1.2rem;
+  }
+  .landingpage-button {
+    font-size: 1.2rem;
+  }
+  .body-logo {
+    height: 80px;
+    width: 80px;
+  }
+}
