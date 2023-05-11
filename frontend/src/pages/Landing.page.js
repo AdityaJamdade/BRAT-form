@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import './LandingPage.css';
 
@@ -16,9 +17,9 @@ const LandingPage = () => {
       <p className="landingpage-text">
         Welcome to the BRAT entrance exam. We are dedicated to providing the best education and career opportunities for our students.
       </p>
-      <a href="/form" className="landingpage-button">
+      <Link to="/form" className="landingpage-button">
         Fill out the entrance form
-      </a>
+      </Link>
     </div>
     </>
   );

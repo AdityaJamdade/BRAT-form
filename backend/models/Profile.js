@@ -5,15 +5,15 @@ const ProfileSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    father_name: {
+    fatherName: {
         type: String,
         required: true
     },
-    mother_name: {
+    motherName: {
         type: String,
         required: true
     },
-    date_of_birth: {
+    dob: {
         type: String,
         required: true
     },
@@ -22,62 +22,37 @@ const ProfileSchema = new mongoose.Schema({
         required: true,
         enum:['M','F','O']
     },
-    type_of_identification: {
-        type: String,
-        required: true,
-        enum:['PAN','AADHAR'],
-    },
-    identification_number: {
-        type: String,
-        required: true
-    },
-    mobile_number: {
+    mobNo: {
         type: Number,
         required: true
     },
-    email_id: {
+    email: {
         type: String,
         required: true,
         unique: true
     },
 
     // address details
-    premises_name: {
-        type: String,
-        required: true
-    },
-    sub_locality: {
-        type: String,
-    },
-    locality:{
-        type: String,
-        required: true
-    },
     state:{
         type: String,
         required: true
     },
-    district:{
+    city:{
         type: String,
         required: true
+    },
+    country: {
+        type: String,
+        required:true
     },
     pincode:{
         type: Number,
         required: true
     },
-    permanent_address:{
+    address:{
         type: String,
         required: true
-    },
-    local_address:{
-        type: String,
-        required: true
-    },
-    email_id: {
-        type: String,
-        required: true,
-        unique: true
-    },
+    }
 },{
     timestamps: true
 })

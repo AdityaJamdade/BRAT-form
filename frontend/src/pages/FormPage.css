@@ -41,16 +41,21 @@
     background-color: #f5f5f5;
     color: #333;
   }
-  
+  .error{
+    color:red;
+    font-size: smaller;
+  }
 
   .file-input {
     position: relative;
     margin-bottom: 20px;
+    display: flex;
+    margin: 20px;
   }
   
   .file-input label {
     display: block;
-    font-size: 0.9rem;
+    font-size: 1.2rem;
     margin-bottom: 8px;
   }
   
@@ -93,6 +98,26 @@
     background-color: #ccc;
     cursor: not-allowed;
   }
+  .file-input {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  
+  .file-input label {
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  .file-info {
+    margin-top: 10px;
+    color: #888;
+  }
+  
+  .file-info p {
+    margin: 0;
+  }
+  
   
   .input-container {
     display: flex;
