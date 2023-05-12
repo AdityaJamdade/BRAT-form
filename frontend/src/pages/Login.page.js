@@ -3,6 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import './LoginPage.css';
 
+const BASE_API = 'http://localhost:8000/api/user'
+
 const LoginPage = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');

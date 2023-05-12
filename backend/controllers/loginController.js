@@ -18,7 +18,8 @@ const getLogin = async (req, res) => {
 
 const postLogin = async (req, res) => {
    try {
-        res.json({ msg: 'This is postLogin endpoint!' })
+        const user = await User.create(req.body);
+        res.json({ success : true, user })
    } catch (error) {
         res.status(500).json({ success: false, msg: 'Internal server error', error_info: error });    
    }

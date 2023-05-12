@@ -29,6 +29,22 @@ const getProfiles = async (req, res) => {
     }
 }
 
+const deleteProfile = async (req, res) => {
+    try {
+        email = req.body.email
+        const profile = await Profile.findOne({email})
+        if(profile){
+            const data = await Profile.deleteOne({email})
+            res.status(200).json({ success: true, data })
+        }else{
+            res.status(400).json({ success: false, msg: 'Profile not found' });
+        }
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ success: false, msg: 'Internal server error', error_info: error });
+    }
+}
+
 const deleteAllProfiles = async (req, res) => {
     try{
         const data = await Profile.deleteMany({})
@@ -38,4 +54,4 @@ const deleteAllProfiles = async (req, res) => {
     }
 } 
 
-module.exports = { getProfiles, addProfile, updateProfile, deleteAllProfiles }
+module.exports = { getProfiles, addProfile, updateProfile, deleteProfile, deleteAllProfiles }
