@@ -2,6 +2,9 @@ import './FormPage.css'
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
+import axios from 'axios'
+
+const BASE_API = 'http://localhost:8000/api/user/profile'
 
 const Form = () => {
     const [stage, setStage] = useState(1);
@@ -105,11 +108,15 @@ const Form = () => {
         const file = e.target.files[0];
         setAadhar(file);
     }
-    const handleNext = () => {
-        setStage((prevStage) => prevStage + 1);
-        if (stage === 2) {
-            console.log('calling handle submit...')
-            handleSubmit();
+    const handleNext = async () => {
+        if (stage === 1) {
+            const success = await handleSubmit();
+            if (success) {
+                setStage((prevStage) => prevStage + 1);
+            }
+        }
+        else if (stage === 2) {
+            setStage((prevStage) => prevStage + 1);
         }
     };
     const handlePrev = () => {
@@ -121,6 +128,11 @@ const Form = () => {
         console.log('photo', photo);
         console.log('signature', signature);
         console.log('aadhar', aadhar);
+
+        const response = await axios.post(BASE_API, formValues);
+        console.log(response.data)
+
+        return response.data.success
     }
 
     const renderStageContent = () => {
@@ -129,90 +141,93 @@ const Form = () => {
                 return (
                     <>
                         <Navbar />
-                        <div className='form'>
-                            {/* Stage 1: Personal Details */}
-                            <h2>Stage 1: Personal Details</h2>
-                            {/* Personal details form fields */}
-                            <div className="input-container ">
-                                <label htmlFor="name">Name</label>
-                                <input className='' type="text" name="name" value={formValues.name} onChange={handleChange} />
-                                {validationErrors.name && <p className="error">{validationErrors.name}</p>}
-                            </div>
-                            <div className='input-container'>
-                                <label htmlFor="email">Email</label>
-                                <input type="email" name='email' value={formValues.email} onChange={handleChange} />
-                                {validationErrors.email && <p className="error">{validationErrors.email}</p>}
-                            </div>
-                            <div className='input-container'>
-                                <label htmlFor="mobNo">Mobile No.</label>
-                                <input type="email" name='mobNo' value={formValues.mobNo} onChange={handleChange} />
-                            </div>
-                            <div className="input-container ">
-                                <label htmlFor="fatherName">Father's Name</label>
-                                <input className='' type="text" name="fatherName"
-                                    value={formValues.fatherName} onChange={handleChange}
-                                />
-                            </div>
-                            <div className="input-container ">
-                                <label htmlFor="motherName">Mother's Name</label>
-                                <input className='' type="text" name="motherName"
-                                    value={formValues.motherName} onChange={handleChange}
-                                />
-                            </div>
-                            <div className="input-container">
-                                <label htmlFor="dob">Date of Birth</label>
-                                <input type="date" id="date" name="dob"
-                                    value={formValues.dob} onChange={handleChange}
-                                />
-                                {validationErrors.dob && <p className="error">{validationErrors.dob}</p>}
-                            </div>
+                        <div className="stage-1">
 
-                            <div className="input-container">
-                                <label htmlFor="gender">Gender</label>
-                                <select className='select-option' id="gender" name="gender"
-                                    value={formValues.gender} onChange={handleChange}
-                                >
-                                    <option value="">Select Gender</option>
-                                    <option value="M">M</option>
-                                    <option value="F">F</option>
-                                    <option value="T">T</option>
-                                </select>
-                            </div>
-                            <div className="input-container">
-                                <label htmlFor="country">Country</label>
-                                <input type="text" id="country" name="country"
-                                    value={formValues.country} onChange={handleChange}
-                                />
-                            </div>
-                            <div className="input-container">
-                                <label htmlFor="state">State</label>
-                                <input type="text" id="state" name="state"
-                                    value={formValues.state} onChange={handleChange}
-                                />
-                            </div>
-                            <div className="input-container">
-                                <label htmlFor="city">City</label>
-                                <input type="text" id="state" name="city"
-                                    value={formValues.city} onChange={handleChange}
-                                />
-                            </div>
+                            <div className='form'>
+                                {/* Stage 1: Personal Details */}
+                                <h2>Stage 1: Personal Details</h2>
+                                {/* Personal details form fields */}
+                                <div className="input-container ">
+                                    <label htmlFor="name">Name</label>
+                                    <input className='' type="text" name="name" value={formValues.name} onChange={handleChange} />
+                                    {validationErrors.name && <p className="error">{validationErrors.name}</p>}
+                                </div>
+                                <div className='input-container'>
+                                    <label htmlFor="email">Email</label>
+                                    <input type="email" name='email' value={formValues.email} onChange={handleChange} />
+                                    {validationErrors.email && <p className="error">{validationErrors.email}</p>}
+                                </div>
+                                <div className='input-container'>
+                                    <label htmlFor="mobNo">Mobile No.</label>
+                                    <input type="email" name='mobNo' value={formValues.mobNo} onChange={handleChange} />
+                                </div>
+                                <div className="input-container ">
+                                    <label htmlFor="fatherName">Father's Name</label>
+                                    <input className='' type="text" name="fatherName"
+                                        value={formValues.fatherName} onChange={handleChange}
+                                    />
+                                </div>
+                                <div className="input-container ">
+                                    <label htmlFor="motherName">Mother's Name</label>
+                                    <input className='' type="text" name="motherName"
+                                        value={formValues.motherName} onChange={handleChange}
+                                    />
+                                </div>
+                                <div className="input-container">
+                                    <label htmlFor="dob">Date of Birth</label>
+                                    <input type="date" id="date" name="dob"
+                                        value={formValues.dob} onChange={handleChange}
+                                    />
+                                    {validationErrors.dob && <p className="error">{validationErrors.dob}</p>}
+                                </div>
 
-                            <div className="input-container">
-                                <label htmlFor="address">Address</label>
-                                <input id="address" name="address" type='text'
-                                    value={formValues.address} onChange={handleChange}
-                                />
-                            </div>
+                                <div className="input-container">
+                                    <label htmlFor="gender">Gender</label>
+                                    <select className='select-option' id="gender" name="gender"
+                                        value={formValues.gender} onChange={handleChange}
+                                    >
+                                        <option value="">Select Gender</option>
+                                        <option value="M">M</option>
+                                        <option value="F">F</option>
+                                        <option value="T">T</option>
+                                    </select>
+                                </div>
+                                <div className="input-container">
+                                    <label htmlFor="country">Country</label>
+                                    <input type="text" id="country" name="country"
+                                        value={formValues.country} onChange={handleChange}
+                                    />
+                                </div>
+                                <div className="input-container">
+                                    <label htmlFor="state">State</label>
+                                    <input type="text" id="state" name="state"
+                                        value={formValues.state} onChange={handleChange}
+                                    />
+                                </div>
+                                <div className="input-container">
+                                    <label htmlFor="city">City</label>
+                                    <input type="text" id="state" name="city"
+                                        value={formValues.city} onChange={handleChange}
+                                    />
+                                </div>
 
-                            <div className="input-container">
-                                <label htmlFor="pincode">Pin Code</label>
-                                <input type="text" id="pincode" name="pincode"
-                                    value={formValues.pincode} onChange={handleChange}
-                                />
-                            </div>
-                            {/* Next button */}
-                            <div className="button-container">
-                                <button className='button' onClick={handleNext}>Next</button>
+                                <div className="input-container">
+                                    <label htmlFor="address">Address</label>
+                                    <input id="address" name="address" type='text'
+                                        value={formValues.address} onChange={handleChange}
+                                    />
+                                </div>
+
+                                <div className="input-container">
+                                    <label htmlFor="pincode">Pin Code</label>
+                                    <input type="text" id="pincode" name="pincode"
+                                        value={formValues.pincode} onChange={handleChange}
+                                    />
+                                </div>
+                                {/* Next button */}
+                                <div className="button-container">
+                                    <button className='button' onClick={handleNext}>Next</button>
+                                </div>
                             </div>
                         </div>
                     </>
