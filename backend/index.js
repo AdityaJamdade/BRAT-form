@@ -16,39 +16,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/api/user/profile', require('./routes/profileRoutes'))
-
-
-// const multer = require('multer')
-// const Signature = require('./models/Signature.model')
-// const Storage = multer.diskStorage({
-//     destination: "uploads/",
-//     filename:  (req, file, callback) => {
-//         callback(null, Date.now+file.originalname);
-//     },
-// })
-// const upload = multer({
-//     storage:Storage
-// }).single('testImage')
-
-// app.post('/upload', (req, res)=> {
-//     upload(req, res, (err)=>{
-//         if(err){console.log(err)}
-//         else{
-//             const newImage  = new Signature({
-//                 name: req.body.name,
-//                 image:{
-//                     data: req.file.filename,
-//                     contentType: 'image/png'
-//                 }
-//             })
-//             newImage
-//             .save()
-//             .then(()=>res.send('image uploaded'))
-//             .catch(err=>console.log(err))
-//         }
-
-//     })
-// })
+app.use('/api/user/Login', require('./routes/loginRoutes'))
 
 app.use('/', (req, res) => {
     res.json({ msg: 'This is base endpoint!' });
