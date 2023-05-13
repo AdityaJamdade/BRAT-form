@@ -16,7 +16,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/api/user/profile', require('./routes/profileRoutes'))
-app.use('/api/user/Login', require('./routes/loginRoutes'))
+app.use('/api/user/login', require('./routes/loginRoutes'))
 
 app.use('/', (req, res) => {
     res.json({ msg: 'This is base endpoint!' });

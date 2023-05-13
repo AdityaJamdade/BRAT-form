@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import './LoginPage.css';
+import axios from 'axios';
 
 const BASE_API = 'http://localhost:8000/api/user'
 
@@ -10,14 +11,25 @@ const LoginPage = () => {
     const [password, setPassword] = useState('');
 
     const navigation = useNavigate()
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
+        console.log('Login')
         e.preventDefault();
-        // Perform login logic using the email and password
-        console.log('Email:', email);
-        console.log('Password:', password);
-        navigation('/')
-
+        try {
+            console.log('Login try', BASE_API + '/login')
+            const response = await axios.post(BASE_API + '/login', {
+                email,
+                password
+            });
+            console.log('Login response', response.data)
+            navigation('/dashboard');
+        } catch (error) {
+            alert('Invalid credentials')
+            console.error('An error occurred during login:', error.response.data);
+            setPassword('');
+            setEmail('');
+        }
     };
+
 
     const handleForgotPassword = () => {
         // Implement the logic to send a reset password email to the user
@@ -27,7 +39,7 @@ const LoginPage = () => {
 
     return (
         <>
-        <Navbar />
+            <Navbar />
             <div className="login-page">
                 <h2>Login</h2>
                 <form onSubmit={handleLogin}>
@@ -51,7 +63,8 @@ const LoginPage = () => {
                         />
                     </label>
                     <br />
-                    <button type="submit" disabled={(password.length > 7 && email.length > 10) ? false : true} onClick={handleLogin}>Login</button>
+                    <button type="submit" disabled={(password.length > 7 && email.length > 10) ? false : true}>Login</button>
+                    <p>Error message</p>
                 </form>
                 <p>
                     <Link to="/forgot-password">Forgot Password?</Link>
