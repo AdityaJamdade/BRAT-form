@@ -19,9 +19,10 @@ const updateProfile = async (req, res) => {
     }
 }
 
-const getProfiles = async (req, res) => {
+const getProfile = async (req, res) => {
     try {
-        const data = await Profile.find({});
+        console.log(req.query.email)
+        const data = await Profile.find({email: req.query.email});
         res.status(200).json({ success: true, data })
     } catch (error) {
         console.log(error)
@@ -61,4 +62,4 @@ const deleteAllProfiles = async (req, res) => {
     }
 }
 
-module.exports = { getProfiles, getAllProfiles, addProfile, updateProfile, deleteProfile, deleteAllProfiles }
+module.exports = { getProfile, getAllProfiles, addProfile, updateProfile, deleteProfile, deleteAllProfiles }

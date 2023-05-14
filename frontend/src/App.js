@@ -1,9 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import LandingPage from "./pages/Landing.page";
-import Form from "./pages/Form.page";
-import LoginPage from "./pages/Login.page";
-import ForgotPasswordPage from "./pages/ForgotPassword.page";
-import DashboardPage from "./pages/Dashboard.page";
+import { LandingPage, LoginPage, DashboardPage, Form, ForgotPasswordPage, About } from "./pages";
 
 function App() {
   return (
@@ -15,6 +11,7 @@ function App() {
           <Route exact path='/login' element={<LoginPage />} />
           <Route exact path='/dashboard' element={<DashboardPage />} />
           <Route exact path='/forgot-password' element={<ForgotPasswordPage />} />
+          <Route exact path='/about' element={<About />} />
         </Routes>
       </BrowserRouter>
     </div>

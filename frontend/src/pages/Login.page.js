@@ -65,7 +65,6 @@ const LoginPage = () => {
                     </label>
                     <br />
                     <button type="submit" disabled={(password.length > 7 && email.length > 10) ? false : true}>Login</button>
-                    <p>Error message</p>
                 </form>
                 <p>
                     <Link to="/forgot-password">Forgot Password?</Link>

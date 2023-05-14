@@ -1,0 +1,6 @@
+export { default as DashboardPage } from './Dashboard.page'
+export { default as ForgotPasswordPage } from './ForgotPassword.page'
+export { default as LandingPage } from './Landing.page'
+export { default as LoginPage } from './Login.page'
+export { default as About } from './About.page'
+export { default as Form } from './Form.page'

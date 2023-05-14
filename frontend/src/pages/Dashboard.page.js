@@ -18,13 +18,15 @@ const DashboardPage = () => {
 
     const fetchUserDetails = async () => {
         try {
+            console.log('try')
             const localUser = JSON.parse(localStorage.getItem('user'));
             const { user, profile } = localUser;
             setCurrentUser(user);
-            // currentUser.name = currentProfile.name;
-            setCurrentProfile(profile[0]);
+            const newProfile = await axios.get(`${BASE_API}/profile?email=${user.email}`)
+            console.log(newProfile)
+            setCurrentProfile(newProfile.data.data[0]);
         } catch (error) {
-            // console.error('Failed to fetch user details:', error);
+            console.error('Failed to fetch user details:', error);
             navigate('/login');
             // Handle error case, such as redirecting to an error page
         }
