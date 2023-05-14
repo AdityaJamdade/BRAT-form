@@ -57,6 +57,7 @@
   text-decoration: none;
   transition: background-color 0.3s ease-in-out;
   animation: slideInFromLeft 2s ease-in-out;
+  margin-bottom: 1rem;
 }
 
 .landingpage-button:hover {

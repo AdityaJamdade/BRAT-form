@@ -22,9 +22,10 @@ const LoginPage = () => {
             });
             console.log('Login response', response.data)
             navigation('/dashboard');
+            localStorage.setItem('user', JSON.stringify(response.data));
         } catch (error) {
             alert('Invalid credentials')
-            console.error('An error occurred during login:', error.response.data);
+            console.error('An error occurred during login:', error?.response);
             setPassword('');
             setEmail('');
         }

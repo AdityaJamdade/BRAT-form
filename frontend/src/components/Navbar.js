@@ -4,6 +4,7 @@ import './Navbar.css';
 
 const Navbar = () => {
   const [isMobile, setIsMobile] = useState(false);
+  const [userLoggedIn, setUserLoggedIn] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
@@ -18,6 +19,16 @@ const Navbar = () => {
     };
   }, [isMobile]);
 
+  useEffect(() => {
+    // Check if user is present in localStorage
+    const user = localStorage.getItem('user');
+    if (user) {
+      setUserLoggedIn(true);
+    } else {
+      setUserLoggedIn(false);
+    }
+  }, []);
+
   return (
     <nav className="navbar">
       <div className="navbar-logo">
@@ -26,14 +37,34 @@ const Navbar = () => {
       </div>
       {!isMobile && <ul className="navbar-links">
         <li><Link className="links" to="/">Home</Link></li>
-        <li><Link className="links" to="/login">Login</Link></li>
+        {userLoggedIn ? (
+            <li>
+              <Link className="links" to="/dashboard">
+                Dashboard
+              </Link>
+            </li>
+          ) : (
+            <li>
+              <Link className="links" to="/login">
+                Login
+              </Link>
+            </li>
+          )}
         <li><Link className="links" to="/about">About Us</Link></li>
       </ul>}
       {isMobile && <div className="navbar-links-mobile">
         <div className="dropdown" id='dropdown'>
           <div className="dropdown-content">
             <Link className="links" to="/">Home</Link>
-            <Link className="links" to="/login">Login</Link>
+            {userLoggedIn ? (
+              <Link className="links" to="/dashboard">
+                Dashboard
+              </Link>
+          ) : (
+              <Link className="links" to="/login">
+                Login
+              </Link>
+          )}
             <Link className="links" to="/about">About Us</Link>
           </div>
         </div>

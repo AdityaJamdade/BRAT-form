@@ -20,6 +20,9 @@ const LandingPage = () => {
       <Link to="/form" className="landingpage-button">
         Fill out the entrance form
       </Link>
+      <Link to="/dashboard" className="landingpage-button landingpage-dashboard-button">
+        Your Dashboard
+      </Link>
     </div>
     </>
   );

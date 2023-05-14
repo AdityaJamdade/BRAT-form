@@ -1,5 +1,5 @@
 import './FormPage.css'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import axios from 'axios'
@@ -23,6 +23,15 @@ const Form = () => {
         address: '',
         pincode: ''
     });
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        const storedUser = JSON.parse(localStorage.getItem('user'));
+        if (storedUser) {
+            setUser(storedUser.user);
+        }
+    }, [])
+
 
 
     const handleChange = (e) => {
@@ -110,9 +119,11 @@ const Form = () => {
     }
     const handleNext = async () => {
         if (stage === 1) {
-            const success = await handleSubmit();
-            if (success) {
+            const response_data = await handleSubmit();
+            if (response_data.success) {
                 setStage((prevStage) => prevStage + 1);
+            } else {
+                alert(response_data.err)
             }
         }
         else if (stage === 2) {
@@ -132,7 +143,7 @@ const Form = () => {
         const response = await axios.post(BASE_API, formValues);
         console.log(response.data)
 
-        return response.data.success
+        return response.data
     }
 
     const renderStageContent = () => {
@@ -290,9 +301,17 @@ const Form = () => {
                             <div className="button-container">
                                 {/* <button className='button' onClick={handlePrev}>Previous</button> */}
                                 {/* Button to redirect to login page */}
-                                <Link to="/login">
-                                    <button className='button'>Go to Login</button>
-                                </Link>
+                                {
+                                    user ?
+                                        <Link to="/dashboard">
+                                            <button className='button'>Go to Dashboard</button>
+                                        </Link>
+                                        :
+                                        <Link to="/login">
+                                            <button className='button'>Go to Login</button>
+                                        </Link>
+                                }
+
                             </div>
                         </div>
                     </>
